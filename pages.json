@@ -1,10 +1,19 @@
 {
 	"pages": [{
-		"path": "pages/index/index",
-		"style": {
-			"navigationBarTitleText": "uni-app"
+			"path": "pages/tab-bar/print/print",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/tab-bar/my/my",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
 		}
-	}],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
@@ -13,5 +22,22 @@
 		"app-plus": {
 			"background": "#efeff4"
 		}
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [{
+			"pagePath": "pages/tab-bar/print/print",
+			"iconPath": "static/c1.png",
+			"selectedIconPath": "static/c1.png",
+			"text": "在线打印"
+		}, {
+			"pagePath": "pages/tab-bar/my/my",
+			"iconPath": "static/c2.png",
+			"selectedIconPath": "static/c2.png",
+			"text": "我的"
+		}]
 	}
 }
