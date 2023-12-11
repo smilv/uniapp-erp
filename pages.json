@@ -1,6 +1,6 @@
 {
 	"pages": [{
-			"path": "pages/tab-bar/print/print",
+			"path": "pages/tab-bar/home/home",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
@@ -11,6 +11,14 @@
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path" : "pages/tab-bar/menu/menu",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
 			}
 		}
 	],
@@ -29,14 +37,19 @@
 		"borderStyle": "black",
 		"backgroundColor": "#F8F8F8",
 		"list": [{
-			"pagePath": "pages/tab-bar/print/print",
+			"pagePath": "pages/tab-bar/home/home",
 			"iconPath": "static/c1.png",
 			"selectedIconPath": "static/c1.png",
-			"text": "在线打印"
-		}, {
-			"pagePath": "pages/tab-bar/my/my",
+			"text": "首页"
+		}{
+			"pagePath": "pages/tab-bar/menu/menu",
 			"iconPath": "static/c2.png",
 			"selectedIconPath": "static/c2.png",
+			"text": "菜单"
+		}, {
+			"pagePath": "pages/tab-bar/my/my",
+			"iconPath": "static/c3.png",
+			"selectedIconPath": "static/c3.png",
 			"text": "我的"
 		}]
 	}

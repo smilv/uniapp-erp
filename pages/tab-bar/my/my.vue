@@ -1,22 +1,15 @@
+<script setup></script>
 <template>
 	<view>
-		我的
+		<view class="w-100 font-18 bg-red uni-border">我的</view>
+		<view class="card uni-mt-10">我的</view>
+		<view class="card m-t-4">我的</view>
+		<uni-badge text="1"></uni-badge>
 	</view>
 </template>
-
-<script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			
-		}
+<style lang="scss">
+	.card {
+		width: 100rpx;
+		background-color: red;
 	}
-</script>
-
-<style>
-
 </style>

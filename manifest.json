@@ -1,5 +1,5 @@
 {
-    "name" : "uniapp-print",
+    "name" : "uniapp-erp",
     "appid" : "__UNI__A5F5E04",
     "description" : "",
     "versionName" : "1.0.0",
@@ -47,6 +47,12 @@
     },
     /* SDK配置 */
     "quickapp" : {},
+		"h5" : {
+		    "router" : {
+		        "mode" : "history",
+		        "base" : ""
+		    }
+		},
     /* 快应用特有相关 */
     "mp-weixin" : {
         /* 小程序特有相关 */
