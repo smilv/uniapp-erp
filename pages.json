@@ -2,14 +2,7 @@
 	"pages": [{
 			"path": "pages/tab-bar/home/home",
 			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
-			"path": "pages/tab-bar/my/my",
-			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "首页",
 				"enablePullDownRefresh": false
 			}
 		},
@@ -17,7 +10,22 @@
 			"path" : "pages/tab-bar/menu/menu",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "菜单",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path": "pages/tab-bar/my/my",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path" : "pages/login/login",
+			"style" : 
+			{
+				"navigationBarTitleText" : "登录",
 				"enablePullDownRefresh" : false
 			}
 		}
@@ -38,18 +46,18 @@
 		"backgroundColor": "#F8F8F8",
 		"list": [{
 			"pagePath": "pages/tab-bar/home/home",
-			"iconPath": "static/c1.png",
-			"selectedIconPath": "static/c1.png",
+			"iconPath": "static/icons/home.png",
+			"selectedIconPath": "static/icons/home_selected.png",
 			"text": "首页"
-		}{
+		},{
 			"pagePath": "pages/tab-bar/menu/menu",
-			"iconPath": "static/c2.png",
-			"selectedIconPath": "static/c2.png",
+			"iconPath": "static/icons/menu.png",
+			"selectedIconPath": "static/icons/menu_selected.png",
 			"text": "菜单"
 		}, {
 			"pagePath": "pages/tab-bar/my/my",
-			"iconPath": "static/c3.png",
-			"selectedIconPath": "static/c3.png",
+			"iconPath": "static/icons/my.png",
+			"selectedIconPath": "static/icons/my_selected.png",
 			"text": "我的"
 		}]
 	}
