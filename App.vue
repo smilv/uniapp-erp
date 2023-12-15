@@ -26,5 +26,10 @@
 	/* #endif */
 	.uni-btn{
 		font-weight: normal;
+		&[size=mini] {
+			font-size: 13px;
+			font-weight: normal;
+			border-radius: 5px;
+		}
 	}
 </style>
