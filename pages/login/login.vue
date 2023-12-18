@@ -1,10 +1,7 @@
+<!-- 登录 -->
 <script setup lang="ts">
 	import { computed, reactive, ref } from 'vue';
 	const CODE_TIME = 30;
-	const tabList = [
-		{ label: "账号登录", value: 1 },
-		{ label: "手机登录", value: 2 },
-	];
 	const tabActive = ref(1);
 	const accFormData = reactive({
 		loginName: "",
@@ -46,8 +43,18 @@
 	})
 	const accFormRef = ref();
 	const phoneFormRef = ref();
+	const tabMap = {
+		1: {
+			label: "账号登录",
+			formRef: accFormRef,
+		},
+		2: {
+			label: "手机登录",
+			formRef: phoneFormRef,
+		}
+	};
 	const codeTime = ref(CODE_TIME); //验证码倒计时
-	//验证码按钮不可点击
+	//未输入手机号或发送中，验证码按钮不可点击
 	const codeDisabled = computed(() => {
 		if (codeTime.value !== CODE_TIME || phoneFormData.loginName.length !== 11) return true;
 		return false;
@@ -56,6 +63,9 @@
 		tabActive.value = val;
 	}
 	function getCode() {
+		setCodeTimer()
+	}
+	function setCodeTimer() {
 		codeTime.value--;
 		const timer = setInterval(() => {
 			codeTime.value--;
@@ -65,16 +75,18 @@
 			}
 		}, 1000)
 	}
-	function submit() {
-		accFormRef.value.validate()
+	async function submit() {
+		const curTab = tabMap[tabActive.value];
+		const formData = await curTab.formRef.value.validate().catch(()=>{});
+		if(!formData) return;
 	}
 </script>
 <template>
 	<view class="uni-padding-wrap">
 		<view class="tab-title">
-			<view :class="{'tab-title__active':tabActive===item.value}" class="tab-title__tab-item"
-				v-for="(item,index) in tabList" :key="index" @click="changeTab(item.value)">
-				{{item.label}}
+			<view v-for="(value, key, index) in tabMap" :key="index" :class="{'tab-title__active':tabActive===key}"
+				class="tab-title__tab-item" @click="changeTab(key)">
+				{{value.label}}
 			</view>
 		</view>
 		<swiper class="swiper" :autoplay="false" :disable-touch="true" :current="tabActive-1" :duration="300">
