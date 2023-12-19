@@ -1,6 +1,6 @@
-import {
-	defineStore
-} from 'pinia';
+import { defineStore } from 'pinia';
+import { login } from "@/api/user";
+import type { LoginParams } from "@/api/types/user";
 
 export const useUserStore = defineStore('user', {
 	state: () => ({
@@ -10,5 +10,13 @@ export const useUserStore = defineStore('user', {
 		increment() {
 			this.count++;
 		},
+		async login(params : LoginParams) {
+			try {
+				const data = await login(params);
+				return Promise.resolve(data)
+			} catch (e) {
+				return Promise.reject(e)
+			}
+		}
 	},
 });

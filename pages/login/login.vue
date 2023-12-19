@@ -1,6 +1,10 @@
-<!-- 登录 -->
+<!-- 
+ * @Description: 登录
+ -->
 <script setup lang="ts">
 	import { computed, reactive, ref } from 'vue';
+	import { useUserStore } from '@/store/modules/user';
+	const userStore = useUserStore();
 	const CODE_TIME = 30;
 	const tabActive = ref(1);
 	const accFormData = reactive({
@@ -43,16 +47,10 @@
 	})
 	const accFormRef = ref();
 	const phoneFormRef = ref();
-	const tabMap = {
-		1: {
-			label: "账号登录",
-			formRef: accFormRef,
-		},
-		2: {
-			label: "手机登录",
-			formRef: phoneFormRef,
-		}
-	};
+	const tabMap = new Map([
+		[1, { label: "账号登录", formRef: accFormRef }],
+		[2, { label: "手机登录", formRef: phoneFormRef }]
+	])
 	const codeTime = ref(CODE_TIME); //验证码倒计时
 	//未输入手机号或发送中，验证码按钮不可点击
 	const codeDisabled = computed(() => {
@@ -76,17 +74,28 @@
 		}, 1000)
 	}
 	async function submit() {
-		const curTab = tabMap[tabActive.value];
-		const formData = await curTab.formRef.value.validate().catch(()=>{});
-		if(!formData) return;
+		const curTab = tabMap.get(tabActive.value);
+		const formData = await curTab.formRef.value.validate().catch(() => { });
+		if (!formData) return;
+		const params = { ...formData, loginType: tabActive.value };
+		userStore.login(params).then(() => {
+			uni.showToast({
+				title: '登录成功',
+				icon: 'success',
+				mask: true,
+			});
+			setTimeout(() => {
+				uni.navigateBack();
+			}, 1500)
+		}).catch(() => { })
 	}
 </script>
 <template>
 	<view class="uni-padding-wrap">
 		<view class="tab-title">
-			<view v-for="(value, key, index) in tabMap" :key="index" :class="{'tab-title__active':tabActive===key}"
-				class="tab-title__tab-item" @click="changeTab(key)">
-				{{value.label}}
+			<view v-for="(value, key) in tabMap" :key="key" :class="{'tab-title__active':tabActive===value[0]}"
+				class="tab-title__tab-item" @click="changeTab(value[0])">
+				{{value[1].label}}
 			</view>
 		</view>
 		<swiper class="swiper" :autoplay="false" :disable-touch="true" :current="tabActive-1" :duration="300">
