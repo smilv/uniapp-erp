@@ -4,6 +4,7 @@
 <script setup lang="ts">
 	import { computed, reactive, ref } from 'vue';
 	import { useUserStore } from '@/store/modules/user';
+import { login } from '../../api/user';
 	const userStore = useUserStore();
 	const CODE_TIME = 30;
 	const tabActive = ref(1);
@@ -87,7 +88,7 @@
 			setTimeout(() => {
 				uni.navigateBack();
 			}, 1500)
-		}).catch(() => { })
+		})
 	}
 </script>
 <template>
