@@ -3,26 +3,26 @@
  */
 
 export interface BaseResponse<T = any> {
-	header : {
-		message : string;
-		message_id : any;
-		res_code : number;
-		resources_id : any;
-		time_stamp : string;
-		transaction_type : any;
+	header: {
+		message: string;
+		message_id: any;
+		res_code: number;
+		resources_id: any;
+		time_stamp: string;
+		transaction_type: any;
 	};
-	body : T;
-	traceId : string;
+	body: T;
+	traceId: string;
 }
 
 export interface BasePagination {
-	page_index : number;
-	page_size : number;
-	page_count : number;
+	page_index: number;
+	page_size: number;
+	page_count: number;
 }
 
 export interface RbacResponse<T = any> {
-	code : number;
-	data : T;
-	msg : string;
+	code: number;
+	data: T;
+	msg: string;
 }

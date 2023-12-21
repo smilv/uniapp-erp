@@ -2,25 +2,25 @@
  * @description: 封装uni.request
  */
 
-import { parametersLastPattern, rbacPattern } from "@/utils/pattern";
-import { uuid } from "@/utils/uuid";
-import { setObjToUrlParams } from "@/utils/index";
-import { APP_ID, APP_MD5_KEY } from "@/enums/appEnum";
-import { getToken } from "@/utils/auth";
+import { parametersLastPattern, rbacPattern } from '@/utils/pattern';
+import { uuid } from '@/utils/uuid';
+import { setObjToUrlParams } from '@/utils/index';
+import { APP_ID, APP_MD5_KEY } from '@/enums/appEnum';
+import { getToken } from '@/utils/auth';
 import md5 from 'crypto-js/md5';
 
 class ERequest {
-	public get<T = any>(options : UniApp.RequestOptions) : Promise<T> {
-		return this.request({ ...options, method: "GET" })
+	public get<T = any>(options: UniApp.RequestOptions): Promise<T> {
+		return this.request({ ...options, method: 'GET' });
 	}
-	public post<T = any>(options : UniApp.RequestOptions) : Promise<T> {
-		return this.request({ ...options, method: "POST" })
+	public post<T = any>(options: UniApp.RequestOptions): Promise<T> {
+		return this.request({ ...options, method: 'POST' });
 	}
-	private request<T = any>(options : UniApp.RequestOptions) : Promise<T> {
+	private request<T = any>(options: UniApp.RequestOptions): Promise<T> {
 		return new Promise((resolve, reject) => {
 			uni.request({
 				...this.transRequest(options),
-				success: (res : UniApp.RequestSuccessCallbackResult) => {
+				success: (res: UniApp.RequestSuccessCallbackResult) => {
 					if (res.statusCode == 200) {
 						const data = res.data;
 						try {
@@ -29,41 +29,42 @@ class ERequest {
 						} catch (err) {
 							uni.showToast({
 								title: err.message,
-								icon: "none"
-							})
+								icon: 'none',
+							});
 							reject(data);
 						}
 					} else {
 						uni.showToast({
 							title: '网络请求异常',
-							icon: "none"
-						})
-						reject(res)
+							icon: 'none',
+						});
+						reject(res);
 					}
-				}, fail: (err : UniApp.GeneralCallbackResult) => {
+				},
+				fail: (err: UniApp.GeneralCallbackResult) => {
 					uni.showToast({
 						title: '网络请求异常',
-						icon: "none"
-					})
-					reject(err)
-				}
-			})
-		})
+						icon: 'none',
+					});
+					reject(err);
+				},
+			});
+		});
 	}
-	private transRequest(options : UniApp.RequestOptions) {
+	private transRequest(options: UniApp.RequestOptions) {
 		const { url, header, data } = options;
 		const timeStamp = Date.now();
 		const parametersLast = url.match(parametersLastPattern)[1];
-		const token = getToken() || "";
+		const token = getToken() || '';
 		const dataHeader = {
 			app_id: APP_ID,
 			time_stamp: timeStamp,
 			transaction_type: parametersLast,
 			token,
 			resources_id: -999,
-			message_id: uuid()
+			message_id: uuid(),
 		};
-		if (typeof data === "object" && !(data instanceof ArrayBuffer)) {
+		if (typeof data === 'object' && !(data instanceof ArrayBuffer)) {
 			if (data.RESOURCES_ID) {
 				dataHeader.resources_id = data.RESOURCES_ID;
 				delete data.RESOURCES_ID;
@@ -72,9 +73,9 @@ class ERequest {
 		//兼容rbac接口。token放入Request Headers，body不做处理
 		if (rbacPattern.test(url)) {
 			options.header = {
-				"authorization": token,
-				...header
-			}
+				authorization: token,
+				...header,
+			};
 		} else {
 			options.data = { header: dataHeader, body: data };
 			const queryObj = {
@@ -84,9 +85,9 @@ class ERequest {
 			};
 			options.url = setObjToUrlParams(url, queryObj);
 		}
-		return options
+		return options;
 	}
-	private transResponse(data : any) {
+	private transResponse(data: any) {
 		//网关统一接口
 		if (data.header) {
 			if (data.header.res_code !== 0) {
@@ -104,7 +105,7 @@ class ERequest {
 			}
 		}
 		return data;
-	};
+	}
 }
 
-export const defRequest = new ERequest()
+export const defRequest = new ERequest();

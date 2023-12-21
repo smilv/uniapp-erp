@@ -1,16 +1,16 @@
 <script>
 	export default {
-		onLaunch: function() {
-			console.warn('当前组件仅支持 uni_modules 目录结构 ，请升级 HBuilderX 到 3.1.0 版本以上！')
-			console.log('App Launch')
+		onLaunch: function () {
+			console.warn('当前组件仅支持 uni_modules 目录结构 ，请升级 HBuilderX 到 3.1.0 版本以上！');
+			console.log('App Launch');
 		},
-		onShow: function() {
-			console.log('App Show')
+		onShow: function () {
+			console.log('App Show');
 		},
-		onHide: function() {
-			console.log('App Hide')
-		}
-	}
+		onHide: function () {
+			console.log('App Hide');
+		},
+	};
 </script>
 
 <style lang="scss">
@@ -24,9 +24,9 @@
 		background-color: #f5f5f5;
 	}
 	/* #endif */
-	.uni-btn{
+	.uni-btn {
 		font-weight: normal;
-		&[size=mini] {
+		&[size='mini'] {
 			font-size: 13px;
 			font-weight: normal;
 			border-radius: 5px;

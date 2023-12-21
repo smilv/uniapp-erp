@@ -4,8 +4,8 @@
 <script setup lang="ts">
 	function toLogin() {
 		uni.navigateTo({
-			url: '/pages/login/login'
-		})
+			url: '/pages/login/login',
+		});
 	}
 </script>
 <template>
@@ -18,7 +18,8 @@
 			<view>
 				<image
 					src="https://gdyx-erp.oss-cn-beijing.aliyuncs.com/web-test-file/2023-12-13/9f005be45c334a569a955308d050e939-b6835087-3b83-47bb-8faa-c670d9bad3a4352656483237196734373.jpg"
-					class="avatar"></image>
+					class="avatar"
+				></image>
 			</view>
 		</view>
 		<button type="primary" class="uni-btn login" @click="toLogin">去登录</button>
