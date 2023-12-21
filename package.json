@@ -18,7 +18,11 @@
   },
   "homepage": "https://github.com/smilv/uniapp-erp#readme",
   "devDependencies": {
+    "@types/crypto-js": "4.2.1",
     "unocss": "0.58.0",
     "unocss-preset-weapp": "0.58.0"
+  },
+  "dependencies": {
+    "crypto-js": "4.2.0"
   }
 }

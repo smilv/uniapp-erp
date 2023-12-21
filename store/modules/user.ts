@@ -1,18 +1,22 @@
 import { defineStore } from 'pinia';
 import { login } from "@/api/user";
+import { setToken } from "@/utils/auth";
 import type { LoginParams } from "@/api/types/user";
 
 export const useUserStore = defineStore('user', {
 	state: () => ({
-		count: 0
+		token: undefined
 	}),
 	actions: {
-		increment() {
-			this.count++;
+		setToken(info : string | undefined) {
+			this.token = info;
+			setToken(info);
 		},
 		async login(params : LoginParams) {
 			try {
 				const data = await login(params);
+				const { token } = data.data;
+				this.setToken(token);
 				return Promise.resolve(data)
 			} catch (e) {
 				return Promise.reject(e)

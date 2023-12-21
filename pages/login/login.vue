@@ -4,7 +4,8 @@
 <script setup lang="ts">
 	import { computed, reactive, ref } from 'vue';
 	import { useUserStore } from '@/store/modules/user';
-import { login } from '../../api/user';
+	import md5 from 'crypto-js/md5';
+	import { LOGIN_MD5_KEY } from "@/enums/appEnum";
 	const userStore = useUserStore();
 	const CODE_TIME = 30;
 	const tabActive = ref(1);
@@ -78,7 +79,13 @@ import { login } from '../../api/user';
 		const curTab = tabMap.get(tabActive.value);
 		const formData = await curTab.formRef.value.validate().catch(() => { });
 		if (!formData) return;
-		const params = { ...formData, loginType: tabActive.value };
+		const { loginName, passWord } = formData;
+		const params = {
+			loginType: tabActive.value,
+			loginName,
+			passWord: tabActive.value === 1 ?
+				md5(LOGIN_MD5_KEY + loginName.substring(5) + "@" + passWord).toString() : passWord
+		};
 		userStore.login(params).then(() => {
 			uni.showToast({
 				title: '登录成功',
