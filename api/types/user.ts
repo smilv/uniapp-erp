@@ -1,7 +1,7 @@
 import type { RbacResponse } from './base-model';
 
 /**
- * @description: 请求数据类型
+ * @description 请求数据类型
  */
 export type LoginParams = {
 	loginType: number;
@@ -10,7 +10,7 @@ export type LoginParams = {
 };
 
 /**
- * @description: 返回数据类型
+ * @description 返回数据类型
  */
 export type LoginModel = RbacResponse<{
 	status: number;

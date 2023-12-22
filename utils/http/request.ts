@@ -1,5 +1,5 @@
 /**
- * @description: 封装uni.request
+ * @description 封装uni.request
  */
 
 import { parametersLastPattern, rbacPattern } from '@/utils/pattern';

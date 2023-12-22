@@ -1,5 +1,5 @@
 <!-- 
- * @Description: 登录
+ * @Description 登录
  -->
 <script setup lang="ts">
 	import { computed, reactive, ref } from 'vue';

@@ -1,5 +1,5 @@
 /**
- * @description: 接口返回数据类型
+ * @description 接口返回数据类型
  */
 
 export interface BaseResponse<T = any> {

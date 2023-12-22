@@ -1,5 +1,5 @@
 <!-- 
- * @Description: 我的
+ * @Description 我的
  -->
 <script setup lang="ts">
 	function toLogin() {

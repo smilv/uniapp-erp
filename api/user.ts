@@ -1,13 +1,14 @@
 import { defRequest } from '@/utils/http/request';
 import type { LoginParams, LoginModel } from '@/api/types/user';
+import apiHost from '@/config/env';
 
 export const login = (params: LoginParams) =>
 	defRequest.post<LoginModel>({
-		url: 'http://api.test.googutspirits.com/rbac/login/login',
+		url: apiHost.gateway + '/rbac/login/login',
 		data: params,
 	});
 
 export const loginInfo = () =>
 	defRequest.post<LoginModel>({
-		url: 'http://api.test.googutspirits.com/rbac/login/loginDetail',
+		url: apiHost.gateway + '/rbac/login/loginDetail',
 	});
