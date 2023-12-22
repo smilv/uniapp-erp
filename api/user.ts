@@ -9,6 +9,6 @@ export const login = (params: LoginParams) =>
 	});
 
 export const loginInfo = () =>
-	defRequest.post<LoginModel>({
+	defRequest.post({
 		url: apiHost.gateway + '/rbac/login/loginDetail',
 	});
