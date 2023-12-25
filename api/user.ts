@@ -12,3 +12,14 @@ export const loginInfo = () =>
 	defRequest.post({
 		url: apiHost.gateway + '/rbac/login/loginDetail',
 	});
+
+export const sendAliVerifyCode = (params: any) =>
+	defRequest.post({
+		url: apiHost.gateway + '/configuration/center/staff/sendAliVerifyCode',
+		data: params,
+	});
+
+export const logout = () =>
+	defRequest.post({
+		url: apiHost.gateway + '/rbac/login/loginOut',
+	});

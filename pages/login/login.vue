@@ -6,6 +6,7 @@
 	import { useUserStore } from '@/store/modules/user';
 	import md5 from 'crypto-js/md5';
 	import { LOGIN_MD5_KEY } from '@/enums/appEnum';
+	import { sendAliVerifyCode } from '@/api/user';
 	const userStore = useUserStore();
 	const CODE_TIME = 30;
 	const tabActive = ref(1);
@@ -69,7 +70,10 @@
 		tabActive.value = val;
 	}
 	function getCode() {
-		setCodeTimer();
+		const { loginName } = phoneFormData;
+		sendAliVerifyCode({ mobile: loginName }).then(() => {
+			setCodeTimer();
+		});
 	}
 	function setCodeTimer() {
 		codeTime.value--;

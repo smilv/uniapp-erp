@@ -2,10 +2,15 @@
  * @Description 我的
  -->
 <script setup lang="ts">
+	import { useUserStore } from '@/store/modules/user';
+	const userStore = useUserStore();
 	function toLogin() {
 		uni.navigateTo({
 			url: '/pages/login/login',
 		});
+	}
+	function logout() {
+		userStore.logout();
 	}
 </script>
 <template>
@@ -22,8 +27,8 @@
 				></image>
 			</view>
 		</view>
-		<button type="primary" class="uni-btn login" @click="toLogin">去登录</button>
-		<!-- <button type="primary" class="uni-btn login">退出登录</button> -->
+		<button v-if="userStore.token" type="primary" class="uni-btn login" @click="logout">退出登录</button>
+		<button v-else type="primary" class="uni-btn login" @click="toLogin">去登录</button>
 	</view>
 </template>
 <style lang="scss">

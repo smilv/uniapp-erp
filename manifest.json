@@ -47,16 +47,16 @@
     },
     /* SDK配置 */
     "quickapp" : {},
-		"h5" : {
-		    "router" : {
-		        "mode" : "history",
-		        "base" : ""
-		    }
-		},
+    "h5" : {
+        "router" : {
+            "mode" : "history",
+            "base" : ""
+        }
+    },
     /* 快应用特有相关 */
     "mp-weixin" : {
         /* 小程序特有相关 */
-        "appid" : "",
+        "appid" : "wxdd3ecf5ce0cd99a2",
         "setting" : {
             "urlCheck" : false
         },
