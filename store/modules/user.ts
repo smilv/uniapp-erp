@@ -25,12 +25,16 @@ export const useUserStore = defineStore('user', {
 		async logout() {
 			try {
 				const data = await logout();
-				this.setToken('');
-				removeToken();
+				this.resetToken();
 				return Promise.resolve(data);
 			} catch (e) {
 				return Promise.reject(e);
 			}
+		},
+		resetToken() {
+			this.setToken('');
+			removeToken();
+			return Promise.resolve();
 		},
 	},
 });

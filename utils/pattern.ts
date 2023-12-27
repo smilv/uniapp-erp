@@ -2,7 +2,7 @@
 export const hostPattern = /^http(s)?:\/\/(.*?)\//;
 
 //匹配url parameters正则  /rbac/login/loginDetail
-export const parametersPattern = /\/[A-Za-z0-9-_\/]+(?=\?|$)/;
+export const parametersPattern = /\/[A-Za-z0-9-_\/]*(?=\?|$)/;
 
 //匹配url parameters最后一段正则  /loginDetail
 export const parametersLastPattern = /\/([A-Za-z0-9-_]+)(?=\?|$)/;

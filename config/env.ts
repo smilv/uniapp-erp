@@ -2,19 +2,19 @@
  * @description 接口环境变量
  */
 
-type ApiHost = {
+interface ApiHost {
 	gateway: string;
-};
+}
 
-const dev = {
+const dev: ApiHost = {
 	gateway: 'http://api.test.googutspirits.com',
 };
 
-const test = {
+const test: ApiHost = {
 	gateway: 'http://api.test.googutspirits.com',
 };
 
-const prod = {
+const prod: ApiHost = {
 	gateway: 'http://api.googutspirits.com',
 };
 

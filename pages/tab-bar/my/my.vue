@@ -6,11 +6,13 @@
 	const userStore = useUserStore();
 	function toLogin() {
 		uni.navigateTo({
-			url: '/pages/login/login',
+			url: '/pages/login/login?key=value&key2=value2',
 		});
 	}
 	function logout() {
-		userStore.logout();
+		userStore.logout().catch(() => {
+			userStore.resetToken();
+		});
 	}
 </script>
 <template>

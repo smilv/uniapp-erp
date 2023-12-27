@@ -1,6 +1,6 @@
 {
 	"pages": [{
-			"path": "pages/tab-bar/home/home",
+			"path": "pages/tab-bar/index/index",
 			"style": {
 				"navigationBarTitleText": "首页",
 				"enablePullDownRefresh": false
@@ -45,9 +45,9 @@
 		"borderStyle": "black",
 		"backgroundColor": "#F8F8F8",
 		"list": [{
-			"pagePath": "pages/tab-bar/home/home",
-			"iconPath": "static/icons/home.png",
-			"selectedIconPath": "static/icons/home_selected.png",
+			"pagePath": "pages/tab-bar/index/index",
+			"iconPath": "static/icons/index.png",
+			"selectedIconPath": "static/icons/index_selected.png",
 			"text": "首页"
 		},{
 			"pagePath": "pages/tab-bar/menu/menu",
