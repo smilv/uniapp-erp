@@ -1,22 +1,11 @@
-<template>
-	<view>
-		
-	</view>
-</template>
-
-<script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			
-		}
-	}
+<!-- 
+ * @Description 菜单
+ -->
+<script setup>
+	import { usePermission } from '@/hooks/usePermission';
+	usePermission();
 </script>
-
-<style>
-
-</style>
+<template>
+	<view> </view>
+</template>
+<style lang="scss"></style>

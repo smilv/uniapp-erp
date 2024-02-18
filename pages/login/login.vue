@@ -155,7 +155,7 @@
 						</uni-forms-item>
 					</uni-forms>
 					<view class="uni-flex justify-end">
-						<button class="uni-btn w-200rpx" type="primary" size="mini" :disabled="codeDisabled" @click="getCode">{{
+						<button class="uni-btn min-w-120" type="primary" size="mini" :disabled="codeDisabled" @click="getCode">{{
 							codeTime !== CODE_TIME ? `${codeTime}s` : '获取验证码'
 						}}</button>
 					</view>

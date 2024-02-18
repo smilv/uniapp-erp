@@ -23,3 +23,9 @@ export const logout = () =>
 	defRequest.post({
 		url: apiHost.gateway + '/rbac/login/loginOut',
 	});
+
+export const getRoleTree = () =>
+	defRequest.post({
+		url: apiHost.gateway + '/rbac/menu/getRoleTree',
+		data: { attributionTerminal: 1 },
+	});

@@ -3,10 +3,12 @@
  -->
 <script setup lang="ts">
 	import { useUserStore } from '@/store/modules/user';
+	import { usePermission } from '@/hooks/usePermission';
+	usePermission();
 	const userStore = useUserStore();
 	function toLogin() {
 		uni.navigateTo({
-			url: '/pages/login/login?key=value&key2=value2',
+			url: '/pages/login/login',
 		});
 	}
 	function logout() {
@@ -20,7 +22,7 @@
 		<view class="user uni-bg-blue">
 			<view class="p-t-14rpx">
 				<view>歌德盈香股份有限公司</view>
-				<view class="text-26 m-t-10rpx">赵斌</view>
+				<view class="text-26 m-t-10rpx">{{ userStore.userInfo.staffName }}</view>
 			</view>
 			<view>
 				<image

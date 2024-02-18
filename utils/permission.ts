@@ -4,28 +4,10 @@
 
 import { getToken } from './auth';
 import { parametersPattern } from '@/utils/pattern';
+import { useUserStore } from '@/store/modules/user';
+import { usePermissionStore } from '@/store/modules/permission';
 const whiteList = ['/', /\/login\/login$/];
 const apiNameList = ['navigateTo', 'redirectTo', 'reLaunch'];
-
-apiNameList.forEach((item) => {
-	uni.addInterceptor(item, {
-		invoke(e) {
-			const hasToken = getToken();
-			if (hasToken) {
-				//todo
-			} else {
-				if (whiteTest(e.url)) {
-					return true;
-				} else {
-					uni.reLaunch({
-						url: '/pages/login/login',
-					});
-					return false;
-				}
-			}
-		},
-	});
-});
 
 /**
  * @description: 验证当前url是否在白名单中
@@ -43,3 +25,49 @@ const whiteTest = (url: string): boolean => {
 	});
 	return !!result;
 };
+
+function navigateToLogin() {
+	uni.navigateTo({
+		url: '/pages/login/login',
+	});
+}
+
+export function hasPermission(url?: string) {
+	const hasToken = getToken();
+	const userStore = useUserStore();
+	const permissionStore = usePermissionStore();
+	if (hasToken) {
+		if (url === '/pages/login/login') {
+		} else {
+			const menuTree = permissionStore.menuTree;
+			if (menuTree) {
+			} else {
+				try {
+					userStore.getInfo();
+					permissionStore.getMenuTree();
+				} catch (e) {
+					userStore.resetToken();
+					navigateToLogin();
+					return false;
+				}
+			}
+		}
+	} else {
+		if (url && whiteTest(url)) {
+		} else {
+			navigateToLogin();
+			return false;
+		}
+	}
+}
+
+export function createPermission() {
+	apiNameList.forEach((item) => {
+		uni.addInterceptor(item, {
+			invoke(e) {
+				console.log(e.url);
+				return hasPermission(e.url);
+			},
+		});
+	});
+}
