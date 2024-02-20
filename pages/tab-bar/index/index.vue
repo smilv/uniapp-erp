@@ -1,7 +1,7 @@
 <!-- 
  * @Description 首页
  -->
-<script setup>
+<script setup lang="ts">
 	import { usePermission } from '@/hooks/usePermission';
 	usePermission();
 </script>

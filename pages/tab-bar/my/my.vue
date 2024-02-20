@@ -21,7 +21,7 @@
 	<view>
 		<view class="user uni-bg-blue">
 			<view class="p-t-14rpx">
-				<view>歌德盈香股份有限公司</view>
+				<view class="text-28">歌德盈香股份有限公司</view>
 				<view class="text-26 m-t-10rpx">{{ userStore.userInfo.staffName }}</view>
 			</view>
 			<view>
