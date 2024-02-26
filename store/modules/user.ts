@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import { login, logout, loginInfo } from '@/api/user';
 import { setToken, getToken, removeToken } from '@/utils/auth';
 import type { LoginParams } from '@/api/types/user';
-import { usePermissionStore } from '@/store/modules/permission';
 
 export const useUserStore = defineStore('user', {
 	state: () => ({
@@ -46,11 +45,9 @@ export const useUserStore = defineStore('user', {
 			}
 		},
 		resetToken() {
-			const permissionStore = usePermissionStore();
 			this.setToken('');
 			removeToken();
 			this.setUserInfo({});
-			permissionStore.setMenuTree(null);
 			return Promise.resolve();
 		},
 	},

@@ -32,7 +32,7 @@ function navigateToLogin() {
 	});
 }
 
-export function hasPermission(url?: string) {
+export async function hasPermission(url?: string) {
 	const hasToken = getToken();
 	const userStore = useUserStore();
 	const permissionStore = usePermissionStore();
@@ -43,12 +43,11 @@ export function hasPermission(url?: string) {
 			if (menuTree) {
 			} else {
 				try {
-					userStore.getInfo();
-					permissionStore.getMenuTree();
+					 await userStore.getInfo()
+					 await permissionStore.generateMenu();
 				} catch (e) {
 					userStore.resetToken();
 					navigateToLogin();
-					return false;
 				}
 			}
 		}
@@ -56,7 +55,6 @@ export function hasPermission(url?: string) {
 		if (url && whiteTest(url)) {
 		} else {
 			navigateToLogin();
-			return false;
 		}
 	}
 }
@@ -65,8 +63,7 @@ export function createPermission() {
 	apiNameList.forEach((item) => {
 		uni.addInterceptor(item, {
 			invoke(e) {
-				console.log(e.url);
-				return hasPermission(e.url);
+				hasPermission(e.url);
 			},
 		});
 	});

@@ -19,7 +19,7 @@
 			@click="triggerCollapse(data)"
 		>
 			<view class="p-l-20rpx">
-				<text>{{ data.resourcesName }}</text>
+				<text>{{ data.name }}</text>
 			</view>
 			<view class="m-r-20rpx">
 				<template v-if="data.children">
