@@ -2,27 +2,30 @@
  * @Description 菜单
  -->
 <script setup lang="ts" name="SidebarItem">
+	import type { Menu } from '@/mock/menu-tree';
 	const props = defineProps<{
-		data: Record<string, any>;
+		data: Menu;
+		path: string;
 	}>();
-	function triggerCollapse(item: Record<string, any>) {
-		if (item.children) {
+	function triggerCollapse(item: Menu) {
+		if (item.children && !item.hideChildrenMenu) {
 			item.open = !item.open;
+		} else {
+			let url = `${props.path}${item.redirect}`;
+			uni.navigateTo({
+				url,
+			});
 		}
 	}
 </script>
 <template>
 	<view class="nest-menu">
-		<view
-			class="flex justify-between p-t-30rpx p-b-30rpx"
-			:class="data.open && data.resourceLevel === 1 ? 'panel-on' : ''"
-			@click="triggerCollapse(data)"
-		>
+		<view class="flex justify-between p-t-30rpx p-b-30rpx" @click="triggerCollapse(data)">
 			<view class="p-l-20rpx">
 				<text>{{ data.name }}</text>
 			</view>
 			<view class="m-r-20rpx">
-				<template v-if="data.children">
+				<template v-if="data.children && !data.hideChildrenMenu">
 					<uni-icons type="top" size="14" color="#999" v-show="data.open"></uni-icons>
 					<uni-icons type="bottom" size="14" color="#999" v-show="!data.open"></uni-icons>
 				</template>
@@ -35,6 +38,7 @@
 			v-for="(item, index) in data.children"
 			:key="index"
 			:data="item"
+			:path="`${path}${item.path}`"
 			v-show="data.open"
 			class="p-l-20rpx"
 		/>
@@ -43,8 +47,5 @@
 <style lang="scss">
 	.nest-menu {
 		background-color: #fff;
-	}
-	.panel-on {
-		background-color: #f0f0f0;
 	}
 </style>

@@ -40,7 +40,9 @@ export async function hasPermission(url?: string) {
 		if (url === '/pages/login/login') {
 		} else {
 			const menuTree = permissionStore.menuTree;
+			const pageRoles = permissionStore.pageRoles;
 			if (menuTree) {
+				console.log(pageRoles,url)
 			} else {
 				try {
 					 await userStore.getInfo()

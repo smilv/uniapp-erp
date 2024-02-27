@@ -10,7 +10,7 @@
 </script>
 <template>
 	<view class="p-20rpx">
-		<SidebarItem v-for="(item, index) in permissionStore.menuTree" :key="index" :data="item" />
+		<SidebarItem v-for="(item, index) in permissionStore.menuTree" :key="index" :data="item" :path="item.path" />
 	</view>
 </template>
 <style lang="scss"></style>
