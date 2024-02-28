@@ -3,6 +3,7 @@
  -->
 <script setup lang="ts" name="SidebarItem">
 	import type { Menu } from '@/mock/menu-tree';
+	import SidebarItem from './SidebarItem';
 	const props = defineProps<{
 		data: Menu;
 		path: string;
@@ -19,8 +20,8 @@
 	}
 </script>
 <template>
-	<view class="nest-menu">
-		<view class="flex justify-between p-t-30rpx p-b-30rpx" @click="triggerCollapse(data)">
+	<view>
+		<view class="flex justify-between p-t-15rpx p-b-15rpx" @click="triggerCollapse(data)">
 			<view class="p-l-20rpx">
 				<text>{{ data.name }}</text>
 			</view>
@@ -34,18 +35,16 @@
 				</template>
 			</view>
 		</view>
-		<SidebarItem
-			v-for="(item, index) in data.children"
-			:key="index"
-			:data="item"
-			:path="`${path}${item.path}`"
-			v-show="data.open"
-			class="p-l-20rpx"
-		/>
+		<view class="p-l-20rpx">
+			<SidebarItem
+				v-for="(item, index) in data.children"
+				:key="index"
+				:data="item"
+				:path="`${path}${item.path}`"
+				v-show="data.open"
+			/>
+		</view>
 	</view>
 </template>
 <style lang="scss">
-	.nest-menu {
-		background-color: #fff;
-	}
 </style>

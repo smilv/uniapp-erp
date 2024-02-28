@@ -32,21 +32,38 @@ function navigateToLogin() {
 	});
 }
 
-export async function hasPermission(url?: string) {
+function pagePermission(pageRoles: string[], url: undefined | string) {
+	if (url === undefined) return true;
+	if (url) {
+		url = url.split('?')[0];
+		return pageRoles.includes(url);
+	}
+}
+
+export async function hasPermission(e: undefined | Record<string, any>) {
+	const url = e?.url;
 	const hasToken = getToken();
 	const userStore = useUserStore();
 	const permissionStore = usePermissionStore();
 	if (hasToken) {
 		if (url === '/pages/login/login') {
 		} else {
+			const userInfo = userStore.userInfo;
 			const menuTree = permissionStore.menuTree;
 			const pageRoles = permissionStore.pageRoles;
-			if (menuTree) {
-				console.log(pageRoles,url)
+			if (userInfo && menuTree) {
+				const hasPagePermission = pagePermission(pageRoles, url);
+				if (!hasPagePermission) {
+					uni.showToast({
+						title: '无权限',
+						icon: 'error',
+					});
+					return false;
+				}
 			} else {
 				try {
-					 await userStore.getInfo()
-					 await permissionStore.generateMenu();
+					await userStore.getInfo();
+					await permissionStore.generateMenu();
 				} catch (e) {
 					userStore.resetToken();
 					navigateToLogin();
@@ -59,13 +76,15 @@ export async function hasPermission(url?: string) {
 			navigateToLogin();
 		}
 	}
+	return e;
 }
 
 export function createPermission() {
 	apiNameList.forEach((item) => {
 		uni.addInterceptor(item, {
-			invoke(e) {
-				hasPermission(e.url);
+			async invoke(e) {
+				const res = await hasPermission(e);
+				return res;
 			},
 		});
 	});

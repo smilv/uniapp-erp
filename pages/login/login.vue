@@ -173,7 +173,7 @@
 		display: flex;
 		justify-content: center;
 		padding-top: 26%;
-		font-size: 40rpx;
+		font-size: 20px;
 		color: $uni-secondary-color;
 		height: 80rpx;
 		&__tab-item {

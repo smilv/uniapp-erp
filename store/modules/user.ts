@@ -6,13 +6,13 @@ import type { LoginParams } from '@/api/types/user';
 export const useUserStore = defineStore('user', {
 	state: () => ({
 		token: getToken(),
-		userInfo: {},
+		userInfo: null,
 	}),
 	actions: {
 		setToken(info: string) {
 			this.token = info;
 		},
-		setUserInfo(info: Record<string, any>) {
+		setUserInfo(info: null | Record<string, any>) {
 			this.userInfo = info;
 		},
 		async login(params: LoginParams) {
@@ -47,7 +47,7 @@ export const useUserStore = defineStore('user', {
 		resetToken() {
 			this.setToken('');
 			removeToken();
-			this.setUserInfo({});
+			this.setUserInfo(null);
 			return Promise.resolve();
 		},
 	},

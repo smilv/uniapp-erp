@@ -9,8 +9,16 @@
 	const permissionStore = usePermissionStore();
 </script>
 <template>
-	<view class="p-20rpx">
-		<SidebarItem v-for="(item, index) in permissionStore.menuTree" :key="index" :data="item" :path="item.path" />
+	<view class="p-l-20rpx p-r-20rpx">
+		<view class="nest-menu" v-for="(item, index) in permissionStore.menuTree" :key="index">
+			<SidebarItem :data="item" :path="item.path" />
+		</view>
 	</view>
 </template>
-<style lang="scss"></style>
+<style lang="scss">
+	.nest-menu {
+		background: #fff;
+		margin: 15rpx 0;
+		padding: 10rpx 0;
+	}
+</style>
